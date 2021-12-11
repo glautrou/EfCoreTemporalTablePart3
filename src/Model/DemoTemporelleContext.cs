@@ -24,5 +24,34 @@ public partial class DemoTemporelleContext : DbContext
         }
     }
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Employe>(entity =>
+        {
+            entity.Property(e => e.Nom)
+                .IsRequired()
+                .HasMaxLength(80);
+
+            entity.Property(e => e.Prenom)
+                .IsRequired()
+                .HasMaxLength(80);
+
+            entity.HasOne(d => d.Entreprise)
+                .WithMany(p => p.Employe)
+                .HasForeignKey(d => d.EntrepriseId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Employe_Entreprise");
+        });
+
+        modelBuilder.Entity<Entreprise>(entity =>
+        {
+            entity.Property(e => e.Adresse).HasMaxLength(80);
+            entity.Property(e => e.Nom).HasMaxLength(80);
+
+        });
+
+        OnModelCreatingPartial(modelBuilder);
+    }
+
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
