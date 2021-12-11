@@ -26,6 +26,7 @@ public partial class DemoTemporelleContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        //Définitions sans temporalité
         modelBuilder.Entity<Employe>(entity =>
         {
             entity.Property(e => e.Nom)
@@ -49,6 +50,23 @@ public partial class DemoTemporelleContext : DbContext
             entity.Property(e => e.Nom).HasMaxLength(80);
 
         });
+
+        //Ajout temporalités
+        modelBuilder
+            .Entity<Employe>()
+            .ToTable("Employe", b => b.IsTemporal());
+
+        modelBuilder.Entity<Entreprise>()
+            .ToTable(
+                "Entreprise",
+                b => b.IsTemporal(
+                    b =>
+                    {
+                        //Changement des noms par défaut
+                        b.HasPeriodStart("ValideDu");
+                        b.HasPeriodEnd("ValideAu");
+                        b.UseHistoryTable("EntrepriseHistorique");
+                    }));
 
         OnModelCreatingPartial(modelBuilder);
     }
