@@ -20,7 +20,7 @@ public partial class DemoTemporelleContext : DbContext
     {
         if (!optionsBuilder.IsConfigured)
         {
-            optionsBuilder.UseSqlServer("data source=.;initial catalog=DemoTemporelle;Integrated Security=SSPI");
+            optionsBuilder.UseSqlServer("data source=.;initial catalog=DemoTemporelleEf6;Integrated Security=SSPI");
         }
     }
 
