@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace EfCoreTemporalTablePart3;
+namespace EfCoreTemporalTablePart3.Model;
 
 public partial class DemoTemporelleContext : DbContext
 {
