@@ -30,7 +30,7 @@ Console.WriteLine("Modification du jeu de données...");
 //- "Patricia Martin" change de nom en "Martin Durant"
 employe2.Nom = "Martin Durant";
 //- "Jacques Dupont" rejoint "Webnet"
-employe3.EntrepriseId = 2;
+employe3.EntrepriseId = 1;
 //- Renommer "Microsoft" en "Microsoft France"
 entreprise2.Nom = "Microsoft France";
 //- Persist
