@@ -43,7 +43,25 @@ db.SaveChanges();
 //Requêtage sans temporalité
 Console.WriteLine("Requêtage sans temporalité...");
 db.Employe
-    .Select(i => $"{i.Prenom} {i.Nom} - {i.Entreprise.Nom}")
+    .Select(i => $"\t- {i.Prenom} {i.Nom} - {i.Entreprise.Nom}")
+    .ToList()
+    .ForEach(i => Console.WriteLine(i)
+);
+
+//Requêtage avec temporalité
+Console.WriteLine("Requêtage avec temporalité...");
+Console.WriteLine("\tDonnées telles que lors du 1er ajout en début de programme :");
+db.Employe
+    .TemporalAsOf(dateAjout.ToUniversalTime()) //Temporal=UTC, donc ne pas oublier ToUniversalTime()
+    .Select(i => $"\t\t- {i.Prenom} {i.Nom} - {i.Entreprise.Nom}")
+    .ToList()
+    .ForEach(i => Console.WriteLine(i)
+);
+Console.WriteLine("\tGlobalité des données (anciennes + actuelles) :");
+db.Employe
+    .TemporalAll()
+    .OrderBy(i => EF.Property<DateTime>(i, "PeriodStart"))
+    .Select(i => $"\t\t- {i.Prenom} {i.Nom} - début = {EF.Property<DateTime>(i, "PeriodStart")}, fin = {EF.Property<DateTime>(i, "PeriodEnd")}")
     .ToList()
     .ForEach(i => Console.WriteLine(i)
 );
