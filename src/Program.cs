@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using EfCoreTemporalTablePart3.Model;
+using Microsoft.EntityFrameworkCore;
 
 Console.WriteLine("DEBUT");
 
@@ -35,5 +36,13 @@ employe3.EntrepriseId = 1;
 entreprise2.Nom = "Microsoft France";
 //- Persist
 db.SaveChanges();
+
+//Requêtage sans temporalité
+Console.WriteLine("Requêtage sans temporalité...");
+db.Employe
+    .Include(i => i.Entreprise)
+    .ToList()
+    .ForEach(i => Console.WriteLine($"{i.Prenom} {i.Nom} - {i.Entreprise.Nom}")
+);
 
 Console.WriteLine("FIN");
