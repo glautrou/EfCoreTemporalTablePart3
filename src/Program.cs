@@ -43,9 +43,9 @@ db.SaveChanges();
 //Requêtage sans temporalité
 Console.WriteLine("Requêtage sans temporalité...");
 db.Employe
-    .Include(i => i.Entreprise)
+    .Select(i => $"{i.Prenom} {i.Nom} - {i.Entreprise.Nom}")
     .ToList()
-    .ForEach(i => Console.WriteLine($"{i.Prenom} {i.Nom} - {i.Entreprise.Nom}")
+    .ForEach(i => Console.WriteLine(i)
 );
 
 Console.WriteLine("FIN");
