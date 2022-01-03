@@ -10,8 +10,6 @@ public partial class Entreprise
     public int Id { get; set; }
     public string Nom { get; set; }
     public string Adresse { get; set; }
-    public DateTime SysStartTime { get; set; }
-    public DateTime SysEndTime { get; set; }
 
     public virtual ICollection<Employe> Employe { get; set; }
 }

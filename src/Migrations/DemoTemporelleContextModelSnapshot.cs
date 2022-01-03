@@ -89,12 +89,6 @@ namespace EfCoreTemporalTablePart3.Migrations
                         .HasMaxLength(80)
                         .HasColumnType("nvarchar(80)");
 
-                    b.Property<DateTime>("SysEndTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("SysStartTime")
-                        .HasColumnType("datetime2");
-
                     b.Property<DateTime>("ValideAu")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")

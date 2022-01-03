@@ -17,8 +17,6 @@ namespace EfCoreTemporalTablePart3.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nom = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
                     Adresse = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
-                    SysStartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    SysEndTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ValideAu = table.Column<DateTime>(type: "datetime2", nullable: false)
                         .Annotation("SqlServer:IsTemporal", true)
                         .Annotation("SqlServer:TemporalPeriodEndColumnName", "ValideAu")
