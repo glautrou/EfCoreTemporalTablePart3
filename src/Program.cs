@@ -66,4 +66,46 @@ db.Employe
     .ForEach(i => Console.WriteLine(i)
 );
 
+//Restore
+Console.WriteLine("\tRestauration donnée historique :");
+//- Restaurer ancienne version des données : "Microsoft France" en "Microsoft"
+Console.WriteLine("\t> Ancienne version existante :");
+db = new DemoTemporelleContext();
+var entrepriseModifiee = db.Entreprise
+    .TemporalAll()
+    .Where(i => i.Id == entreprise2.Id)
+    .OrderBy(i => EF.Property<DateTime>(i, "ValideDu"))
+    .First();
+db.Entry(entrepriseModifiee).State = EntityState.Modified;
+db.SaveChanges();
+db.Entreprise
+    .Select(i => $"\t\t- {i.Nom}")
+    .ToList()
+    .ForEach(i => Console.WriteLine(i)
+);
+//- Restaurer donnée supprimée : Jacques Dupont
+db = new DemoTemporelleContext();
+Console.WriteLine("\t> Donnée supprimée :");
+var idEmployeSupprime = employe3.Id;
+db.Employe.Remove(employe3);
+db.SaveChanges();
+db.Employe
+    .Select(i => $"\t\t- Avant : {i.Prenom} {i.Nom}")
+    .ToList()
+    .ForEach(i => Console.WriteLine(i)
+);
+var employeSupprimee = db.Employe
+    .TemporalAll()
+    .Where(i => i.Id == idEmployeSupprime)
+    .OrderBy(i => EF.Property<DateTime>(i, "PeriodStart"))
+    .Last();
+employeSupprimee.Id = 0; //Auto-increment, nécessaire de réinitialiser pour éviter exception
+db.Employe.Add(employeSupprimee);
+db.SaveChanges();
+db.Employe
+    .Select(i => $"\t\t- Après : {i.Prenom} {i.Nom}")
+    .ToList()
+    .ForEach(i => Console.WriteLine(i)
+);
+
 Console.WriteLine("FIN");
