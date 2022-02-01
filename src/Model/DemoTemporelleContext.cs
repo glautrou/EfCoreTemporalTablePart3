@@ -54,7 +54,7 @@ public partial class DemoTemporelleContext : DbContext
         //Ajout temporalités
         modelBuilder
             .Entity<Employe>()
-            .ToTable("Employe"/*, b => b.IsTemporal()*/);
+            .ToTable("Employe", b => b.IsTemporal());
 
         modelBuilder.Entity<Entreprise>()
             .ToTable(
