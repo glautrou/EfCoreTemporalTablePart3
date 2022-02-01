@@ -4,6 +4,7 @@ using EfCoreTemporalTablePart3.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EfCoreTemporalTablePart3.Migrations
 {
     [DbContext(typeof(DemoTemporelleContext))]
-    partial class DemoTemporelleContextModelSnapshot : ModelSnapshot
+    [Migration("20220201141802_Suppression temporalité Employe")]
+    partial class SuppressiontemporalitéEmploye
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
