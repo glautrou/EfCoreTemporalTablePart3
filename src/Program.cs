@@ -6,8 +6,8 @@ Console.WriteLine("DEBUT");
 
 var db = new DemoTemporelleContext();
 //Re-création DB
-db.Database.EnsureDeleted();
-db.Database.EnsureCreated();
+//db.Database.EnsureDeleted();
+//db.Database.EnsureCreated();
 
 //Ajout d'un jeu de données :
 Console.WriteLine("Ajout d'un jeu de données...");
