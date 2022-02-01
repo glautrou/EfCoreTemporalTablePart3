@@ -9,3 +9,8 @@ public partial class Employe
 
     public virtual Entreprise Entreprise { get; set; }
 }
+
+public partial class Employe
+{
+    public string Email { get; set; }
+}
